@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.ersterstreber.kontauszuege.commands.KontoCMD;
+import de.ersterstreber.kontauszuege.commands.StatementCMD;
 import de.ersterstreber.kontauszuege.listeners.AuszugListener;
 import de.ersterstreber.kontauszuege.listeners.PlayerJoinListener;
 
@@ -35,6 +36,7 @@ public class Kontoauszug extends JavaPlugin {
 
 		getCommand("konto").setExecutor(new KontoCMD());
 		// getCommand("gkonto").setExecutor(new GKontoCMD());
+		getCommand("statement").setExecutor(new StatementCMD());
 
 		pfile = new File("plugins/Auszuege/", "players.yml");
 		pconfig = YamlConfiguration.loadConfiguration(pfile);

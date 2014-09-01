@@ -10,3 +10,6 @@ commands:
      gkonto:
           description: Der GKonto-Hauptkommand.
           aliases: [gk]
+     statement:
+          description: Zeigt eine Zusammenfassung der Einnahmen und Ausgaben
+          aliases: [s]

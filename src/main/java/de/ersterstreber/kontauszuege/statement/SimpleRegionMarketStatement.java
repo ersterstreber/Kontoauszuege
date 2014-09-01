@@ -5,11 +5,11 @@ import java.util.List;
 
 import de.ersterstreber.kontauszuege.Kontoauszug;
 
-public class IConomyStatement {
+public class SimpleRegionMarketStatement {
 
 	private String player;
 
-	public IConomyStatement(String player) {
+	public SimpleRegionMarketStatement(String player) {
 		this.player = player;
 	}
 
@@ -20,20 +20,20 @@ public class IConomyStatement {
 	public double getExpenses(String date, boolean month) {
 		List<String> auszuege = Kontoauszug.pconfig.getStringList("players."
 				+ player);
-		List<String> iconomyoutgoes = new ArrayList<String>();
+		List<String> srmoutgoes = new ArrayList<String>();
 		for (String s : auszuege) {
-			if (s.contains("[-]") && s.contains("[IC]")) {
+			if (s.contains("[-]") && s.contains("[GS]")) {
 				if (month) {
 					if (s.contains("." + date + "."))
-						iconomyoutgoes.add(s);
+						srmoutgoes.add(s);
 				} else {
 					if (s.contains("[" + date + "]"))
-						iconomyoutgoes.add(s);
+						srmoutgoes.add(s);
 				}
 			}
 		}
 		double iprice = 0;
-		for (String s : iconomyoutgoes) {
+		for (String s : srmoutgoes) {
 			String[] splitted = s.split(": ");
 			String[] ss = splitted[1].split(" ");
 			double price = 0;
@@ -51,20 +51,20 @@ public class IConomyStatement {
 	public double getEarnings(String date, boolean month) {
 		List<String> auszuege = Kontoauszug.pconfig.getStringList("players."
 				+ player);
-		List<String> iconomyins = new ArrayList<String>();
+		List<String> srmins = new ArrayList<String>();
 		for (String s : auszuege) {
 			if (s.contains("[+]") && s.contains("[IC]")) {
 				if (month) {
 					if (s.contains("." + date + "."))
-						iconomyins.add(s);
+						srmins.add(s);
 				} else {
 					if (s.contains("[" + date + "]"))
-						iconomyins.add(s);
+						srmins.add(s);
 				}
 			}
 		}
 		double iprice = 0;
-		for (String s : iconomyins) {
+		for (String s : srmins) {
 			String[] splitted = s.split(": ");
 			String[] ss = splitted[1].split(" ");
 			double price = 0;
@@ -82,5 +82,5 @@ public class IConomyStatement {
 	public double getProfit(String date, boolean month) {
 		return getEarnings(date, month) - getExpenses(date, month);
 	}
-
+	
 }
