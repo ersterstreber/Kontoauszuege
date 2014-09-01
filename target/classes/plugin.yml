@@ -1,0 +1,12 @@
+name: Kontoauszug
+main: de.ersterstreber.kontauszuege.Kontoauszug
+version: 0.8
+author: ersterstreber
+depends: [iConomy]
+commands:
+     konto:
+          description: Zeigt deine Kontoauszuege.
+          aliases: [k]
+     gkonto:
+          description: Der GKonto-Hauptkommand.
+          aliases: [gk]
