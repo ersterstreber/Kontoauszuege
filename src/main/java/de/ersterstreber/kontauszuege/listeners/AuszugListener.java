@@ -13,7 +13,7 @@ import org.bukkit.event.Listener;
 
 import com.Acrobot.ChestShop.Events.TransactionEvent;
 import com.Acrobot.ChestShop.Events.TransactionEvent.TransactionType;
-import com.iCo6.system.events.MoneySendEvent;
+import com.greatmancode.craftconomy3.events.MoneyPayEvent;
 
 import de.ersterstreber.kontauszuege.Kontoauszug;
 
@@ -30,18 +30,22 @@ public class AuszugListener implements Listener {
 		if (e.getTransactionType() == TransactionType.SELL)
 			io = "§c[S]";
 		Kontoauszug.add(owner.getName().replace("%gkonto", ""), "§7["
-				+ getDate() + "][CS][" + e.getSign().getLine(1) + "]" + io
+				+ getDate() + "][CS][IN][" + e.getSign().getLine(1) + "]" + io
 				+ "§9[" + e.getSign().getLine(3) + "] §3"
 				+ e.getClient().getName() + ": §f" + df.format(price) + " SD");
+		Kontoauszug.add(e.getClient().getName().replace("%gkonto", ""), "§7["
+				+ getDate() + "][CS][OUT][" + e.getSign().getLine(1) + "]" + io
+				+ "§9[" + e.getSign().getLine(3) + "] §3"
+				+ e.getOwner().getName() + ": §f" + df.format(price) + " SD");
 	}
 
 	@EventHandler
-	public void onSend(MoneySendEvent e) {
-		String owner = e.getReceiver();
+	public void onSend(MoneyPayEvent e) {
+		String owner = e.getClient();
 		DecimalFormat df = new DecimalFormat("#.##");
-		Kontoauszug.add(owner, "§7[" + getDate() + "][IC]§2[+]" + e.getSender()
+		Kontoauszug.add(owner, "§7[" + getDate() + "][IC]§2[+]" + e.getClient()
 				+ ": " + df.format(e.getAmount()) + " SD");
-		Kontoauszug.add(e.getSender(), "§7[" + getDate() + "][IC]§c[-]" + owner
+		Kontoauszug.add(e.getClient(), "§7[" + getDate() + "][IC]§c[-]" + owner
 				+ ": " + df.format(e.getAmount()) + " SD");
 	}
 
@@ -50,7 +54,10 @@ public class AuszugListener implements Listener {
 		String owner = e.getOwner();
 		DecimalFormat df = new DecimalFormat("#.##");
 		Kontoauszug.add(owner.replace("%gkonto", ""), "§7[" + getDate()
-				+ "][GS]§9[" + e.getRegion() + "]§3" + e.getBuyer() + ": §f"
+				+ "][GS]§2[+]§9[" + e.getRegion() + "]§3" + e.getBuyer() + ": §f"
+				+ df.format(e.getAmount()) + " SD");
+		Kontoauszug.add(e.getBuyer().replace("%gkonto", ""), "§7[" + getDate()
+				+ "][GS]§c[-]§9[" + e.getRegion() + "]§3" + e.getOwner() + ": §f"
 				+ df.format(e.getAmount()) + " SD");
 	}
 

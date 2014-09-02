@@ -53,7 +53,7 @@ public class SimpleRegionMarketStatement {
 				+ player);
 		List<String> srmins = new ArrayList<String>();
 		for (String s : auszuege) {
-			if (s.contains("[+]") && s.contains("[IC]")) {
+			if (s.contains("[+]") && s.contains("[GS]")) {
 				if (month) {
 					if (s.contains("." + date + "."))
 						srmins.add(s);

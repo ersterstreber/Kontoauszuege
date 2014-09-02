@@ -5,11 +5,11 @@ import java.util.List;
 
 import de.ersterstreber.kontauszuege.Kontoauszug;
 
-public class IConomyStatement {
+public class CraftConomyStatement {
 
 	private String player;
 
-	public IConomyStatement(String player) {
+	public CraftConomyStatement(String player) {
 		this.player = player;
 	}
 

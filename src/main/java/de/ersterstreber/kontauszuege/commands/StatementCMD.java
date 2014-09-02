@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import de.ersterstreber.kontauszuege.statement.IConomyStatement;
+import de.ersterstreber.kontauszuege.statement.CraftConomyStatement;
 
 public class StatementCMD implements CommandExecutor {
 
@@ -25,7 +25,7 @@ public class StatementCMD implements CommandExecutor {
 							|| args[1].equalsIgnoreCase("ic")
 							|| args[1].equalsIgnoreCase("iconomy")) {
 						p.sendMessage("§7Deine Statistik für den " + args[2] + " :");
-						p.sendMessage(new IConomyStatement(p.getName())
+						p.sendMessage(new CraftConomyStatement(p.getName())
 								.getProfit(args[2], false) + "");
 						return true;
 					}
@@ -35,7 +35,7 @@ public class StatementCMD implements CommandExecutor {
 							|| args[1].equalsIgnoreCase("ic")
 							|| args[1].equalsIgnoreCase("iconomy")) {
 						p.sendMessage("§7Deine Statistik für den Monat: " + args[2]);
-						p.sendMessage(new IConomyStatement(p.getName())
+						p.sendMessage(new CraftConomyStatement(p.getName())
 								.getProfit(args[2], true) + "");
 						return true;
 					}
@@ -46,7 +46,7 @@ public class StatementCMD implements CommandExecutor {
 						|| args[0].equalsIgnoreCase("ic")
 						|| args[0].equalsIgnoreCase("iconomy")) {
 					p.sendMessage("§7Deine Statistik für heute:");
-					p.sendMessage(new IConomyStatement(p.getName())
+					p.sendMessage(new CraftConomyStatement(p.getName())
 							.getProfit(getDate(), false) + "");
 					return true;
 				}
