@@ -79,8 +79,14 @@ public class SimpleRegionMarketStatement {
 		return iprice;
 	}
 	
-	public double getProfit(String date, boolean month) {
-		return getEarnings(date, month) - getExpenses(date, month);
+	public String getProfit(String date, boolean month) {
+		double profit = getEarnings(date, month) - getExpenses(date, month);
+		String s = null;
+		if (profit == 0.0) s = "§7[+/-]" + profit;
+		if (profit > 0.0) s = "§2[+]" + profit;
+		if (profit < 0.0) s = "§c[-]" + profit * -1;
+		
+		return s;
 	}
 	
 }

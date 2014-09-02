@@ -5,11 +5,11 @@ import java.util.List;
 
 import de.ersterstreber.kontauszuege.Kontoauszug;
 
-public class CraftConomyStatement {
+public class ChestShopStatement {
 
 	private String player;
 
-	public CraftConomyStatement(String player) {
+	public ChestShopStatement(String player) {
 		this.player = player;
 	}
 
@@ -20,27 +20,27 @@ public class CraftConomyStatement {
 	public double getExpenses(String date, boolean month) {
 		List<String> auszuege = Kontoauszug.pconfig.getStringList("players."
 				+ player);
-		List<String> iconomyoutgoes = new ArrayList<String>();
+		List<String> srmoutgoes = new ArrayList<String>();
 		for (String s : auszuege) {
-			if (s.contains("[-]") && s.contains("[IC]")) {
+			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("[B]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("[S]"))) {
 				if (month) {
 					if (s.contains("." + date + "."))
-						iconomyoutgoes.add(s);
+						srmoutgoes.add(s);
 				} else {
 					if (s.contains("[" + date + "]"))
-						iconomyoutgoes.add(s);
+						srmoutgoes.add(s);
 				}
 			}
 		}
 		double iprice = 0;
-		for (String s : iconomyoutgoes) {
+		for (String s : srmoutgoes) {
 			String[] splitted = s.split(": ");
-			String[] ss = splitted[1].split(" ");
+			String[] q = splitted[1].split(" ");
 			double price = 0;
 			try {
-				price = Double.parseDouble(ss[0]);
+				price = Double.parseDouble(q[0].replace("§f", ""));
 			} catch (NumberFormatException ex) {
-				System.err.println(splitted[1] + " could not be cast to a double!");
+				System.err.println(q[0].replace("§d", "") + " could not be cast to a double!");
 				return price;
 			}
 			iprice += price;
@@ -51,27 +51,27 @@ public class CraftConomyStatement {
 	public double getEarnings(String date, boolean month) {
 		List<String> auszuege = Kontoauszug.pconfig.getStringList("players."
 				+ player);
-		List<String> iconomyins = new ArrayList<String>();
+		List<String> srmins = new ArrayList<String>();
 		for (String s : auszuege) {
-			if (s.contains("[+]") && s.contains("[IC]")) {
+			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("[S]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("[B]"))) {
 				if (month) {
 					if (s.contains("." + date + "."))
-						iconomyins.add(s);
+						srmins.add(s);
 				} else {
 					if (s.contains("[" + date + "]"))
-						iconomyins.add(s);
+						srmins.add(s);
 				}
 			}
 		}
-		double iprice = 0;
-		for (String s : iconomyins) {
+		double iprice = 0.0;
+		for (String s : srmins) {
 			String[] splitted = s.split(": ");
-			String[] ss = splitted[1].split(" ");
-			double price = 0;
+			String[] q = splitted[1].split(" ");
+			double price = 0.0;
 			try {
-				price = Double.parseDouble(ss[0]);
+				price = Double.parseDouble(q[0].replace("§f", ""));
 			} catch (NumberFormatException ex) {
-				System.err.println(splitted[1] + " could not be cast to a double!");
+				System.err.println(q[0].replace("§d", "") + " could not be cast to a double!");
 				return price;
 			}
 			iprice += price;
@@ -88,5 +88,5 @@ public class CraftConomyStatement {
 		
 		return s;
 	}
-
+	
 }

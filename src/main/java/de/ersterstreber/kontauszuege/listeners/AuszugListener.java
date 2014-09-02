@@ -24,28 +24,32 @@ public class AuszugListener implements Listener {
 		OfflinePlayer owner = e.getOwner();
 		double price = e.getPrice();
 		DecimalFormat df = new DecimalFormat("#.##");
-		String io = "§4n/A";
-		if (e.getTransactionType() == TransactionType.BUY)
-			io = "§2[B]";
-		if (e.getTransactionType() == TransactionType.SELL)
-			io = "§c[S]";
+		String ioowner = "§4n/A";
+		String ioclient = "§4n/A";
+		if (e.getTransactionType() == TransactionType.BUY) {
+			ioowner = "§2[B]";
+			ioclient = "§c[S]";
+		}
+		if (e.getTransactionType() == TransactionType.SELL) {
+			ioowner = "§c[S]";
+			ioclient = "§2[B]";
+		}
 		Kontoauszug.add(owner.getName().replace("%gkonto", ""), "§7["
-				+ getDate() + "][CS][IN][" + e.getSign().getLine(1) + "]" + io
+				+ getDate() + "][CS][IN][" + e.getSign().getLine(1) + "]" + ioowner
 				+ "§9[" + e.getSign().getLine(3) + "] §3"
 				+ e.getClient().getName() + ": §f" + df.format(price) + " SD");
 		Kontoauszug.add(e.getClient().getName().replace("%gkonto", ""), "§7["
-				+ getDate() + "][CS][OUT][" + e.getSign().getLine(1) + "]" + io
+				+ getDate() + "][CS][OUT][" + e.getSign().getLine(1) + "]" + ioclient
 				+ "§9[" + e.getSign().getLine(3) + "] §3"
 				+ e.getOwner().getName() + ": §f" + df.format(price) + " SD");
 	}
 
 	@EventHandler
 	public void onSend(MoneyPayEvent e) {
-		String owner = e.getClient();
 		DecimalFormat df = new DecimalFormat("#.##");
-		Kontoauszug.add(owner, "§7[" + getDate() + "][IC]§2[+]" + e.getClient()
+		Kontoauszug.add(e.getOwner(), "§7[" + getDate() + "][IC]§2[+]" + e.getClient()
 				+ ": " + df.format(e.getAmount()) + " SD");
-		Kontoauszug.add(e.getClient(), "§7[" + getDate() + "][IC]§c[-]" + owner
+		Kontoauszug.add(e.getClient(), "§7[" + getDate() + "][IC]§c[-]" + e.getOwner()
 				+ ": " + df.format(e.getAmount()) + " SD");
 	}
 
