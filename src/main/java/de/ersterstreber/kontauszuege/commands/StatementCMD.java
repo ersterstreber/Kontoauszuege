@@ -25,7 +25,7 @@ public class StatementCMD implements CommandExecutor {
 			//-----CraftConomy-----//
 			
 			if (args.length == 3) {
-				if (args[0].equalsIgnoreCase("day")) {
+				if (args[0].equalsIgnoreCase("day") || args[0].equalsIgnoreCase("d") || args[0].equalsIgnoreCase("tag") || args[0].equalsIgnoreCase("t")) {
 					if (args[1].equalsIgnoreCase("ico")
 							|| args[1].equalsIgnoreCase("ic")
 							|| args[1].equalsIgnoreCase("iconomy")) {
@@ -35,7 +35,7 @@ public class StatementCMD implements CommandExecutor {
 						return true;
 					}
 				}
-				if (args[0].equalsIgnoreCase("month")) {
+				if (args[0].equalsIgnoreCase("month") || args[0].equalsIgnoreCase("monat") || args[0].equalsIgnoreCase("m")) {
 					if (args[1].equalsIgnoreCase("ico")
 							|| args[1].equalsIgnoreCase("ic")
 							|| args[1].equalsIgnoreCase("iconomy")) {
@@ -60,7 +60,7 @@ public class StatementCMD implements CommandExecutor {
 			//-----SimpleRegionMarket-----//
 			
 			if (args.length == 3) {
-				if (args[0].equalsIgnoreCase("day")) {
+				if (args[0].equalsIgnoreCase("day") || args[0].equalsIgnoreCase("d") || args[0].equalsIgnoreCase("tag") || args[0].equalsIgnoreCase("t")) {
 					if (args[1].equalsIgnoreCase("gs")
 							|| args[1].equalsIgnoreCase("srm")
 							|| args[1].equalsIgnoreCase("simpleregionmarket")) {
@@ -70,7 +70,7 @@ public class StatementCMD implements CommandExecutor {
 						return true;
 					}
 				}
-				if (args[0].equalsIgnoreCase("month")) {
+				if (args[0].equalsIgnoreCase("month") || args[0].equalsIgnoreCase("monat") || args[0].equalsIgnoreCase("m")) {
 					if (args[1].equalsIgnoreCase("srm")
 							|| args[1].equalsIgnoreCase("simpleregionmarket")
 							|| args[1].equalsIgnoreCase("gs")) {
@@ -95,7 +95,7 @@ public class StatementCMD implements CommandExecutor {
 			//-----ChestShop-----//
 			
 			if (args.length == 3) {
-				if (args[0].equalsIgnoreCase("day")) {
+				if (args[0].equalsIgnoreCase("day") || args[0].equalsIgnoreCase("d") || args[0].equalsIgnoreCase("tag") || args[0].equalsIgnoreCase("t")) {
 					if (args[1].equalsIgnoreCase("cs")
 							|| args[1].equalsIgnoreCase("chest")
 							|| args[1].equalsIgnoreCase("chestshop")) {
@@ -105,7 +105,7 @@ public class StatementCMD implements CommandExecutor {
 						return true;
 					}
 				}
-				if (args[0].equalsIgnoreCase("month")) {
+				if (args[0].equalsIgnoreCase("month") || args[0].equalsIgnoreCase("monat") || args[0].equalsIgnoreCase("m")) {
 					if (args[1].equalsIgnoreCase("cs")
 							|| args[1].equalsIgnoreCase("chest")
 							|| args[1].equalsIgnoreCase("chestshop")) {
