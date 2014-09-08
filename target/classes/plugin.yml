@@ -1,8 +1,8 @@
 name: Kontoauszug
 main: de.ersterstreber.kontauszuege.Kontoauszug
-version: 0.8
+version: 1.0
 author: ersterstreber
-depends: [iConomy]
+softdepends: [CraftConomy, SimpleRegionMarket, ChestShop]
 commands:
      konto:
           description: Zeigt deine Kontoauszuege.

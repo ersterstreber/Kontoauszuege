@@ -27,12 +27,12 @@ public class AuszugListener implements Listener {
 		String ioowner = "§4n/A";
 		String ioclient = "§4n/A";
 		if (e.getTransactionType() == TransactionType.BUY) {
-			ioowner = "§2[B]";
-			ioclient = "§c[S]";
+			ioowner = "§2[S]";
+			ioclient = "§c[B]";
 		}
 		if (e.getTransactionType() == TransactionType.SELL) {
-			ioowner = "§c[S]";
-			ioclient = "§2[B]";
+			ioowner = "§c[B]";
+			ioclient = "§2[S]";
 		}
 		Kontoauszug.add(owner.getName().replace("%gkonto", ""), "§7["
 				+ getDate() + "][CS][IN][" + e.getSign().getLine(1) + "]" + ioowner

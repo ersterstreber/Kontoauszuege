@@ -70,10 +70,10 @@ public class StatementCMD implements CommandExecutor {
 						return true;
 					}
 				}
-				if (args[0].equalsIgnoreCase("gs")) {
+				if (args[0].equalsIgnoreCase("month")) {
 					if (args[1].equalsIgnoreCase("srm")
 							|| args[1].equalsIgnoreCase("simpleregionmarket")
-							|| args[1].equalsIgnoreCase("iconomy")) {
+							|| args[1].equalsIgnoreCase("gs")) {
 						p.sendMessage("§7Deine Statistik für den Monat: " + args[2]);
 						p.sendMessage(new SimpleRegionMarketStatement(p.getName())
 								.getProfit(args[2], true) + "");
@@ -105,9 +105,9 @@ public class StatementCMD implements CommandExecutor {
 						return true;
 					}
 				}
-				if (args[0].equalsIgnoreCase("cs")) {
-					if (args[1].equalsIgnoreCase("chest")
-							|| args[1].equalsIgnoreCase("ic")
+				if (args[0].equalsIgnoreCase("month")) {
+					if (args[1].equalsIgnoreCase("cs")
+							|| args[1].equalsIgnoreCase("chest")
 							|| args[1].equalsIgnoreCase("chestshop")) {
 						p.sendMessage("§7Deine Statistik für den Monat: " + args[2]);
 						p.sendMessage(new ChestShopStatement(p.getName())

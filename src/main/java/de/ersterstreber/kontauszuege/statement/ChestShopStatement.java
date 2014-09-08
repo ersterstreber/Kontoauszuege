@@ -22,7 +22,7 @@ public class ChestShopStatement {
 				+ player);
 		List<String> srmoutgoes = new ArrayList<String>();
 		for (String s : auszuege) {
-			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("[B]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("[S]"))) {
+			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("[S]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("[B]"))) {
 				if (month) {
 					if (s.contains("." + date + "."))
 						srmoutgoes.add(s);
@@ -53,7 +53,7 @@ public class ChestShopStatement {
 				+ player);
 		List<String> srmins = new ArrayList<String>();
 		for (String s : auszuege) {
-			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("[S]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("[B]"))) {
+			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("[B]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("[S]"))) {
 				if (month) {
 					if (s.contains("." + date + "."))
 						srmins.add(s);
