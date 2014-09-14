@@ -1,5 +1,6 @@
 package de.ersterstreber.kontauszuege.statement;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class ChestShopStatement {
 				+ player);
 		List<String> srmoutgoes = new ArrayList<String>();
 		for (String s : auszuege) {
-			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("[S]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("[B]"))) {
+			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("§c[S]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("§2[S]"))) {
 				if (month) {
 					if (s.contains("." + date + "."))
 						srmoutgoes.add(s);
@@ -53,7 +54,7 @@ public class ChestShopStatement {
 				+ player);
 		List<String> srmins = new ArrayList<String>();
 		for (String s : auszuege) {
-			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("[B]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("[S]"))) {
+			if ((s.contains("[IN]") && s.contains("[CS]") && s.contains("§2[B]")) || (s.contains("[OUT]") && s.contains("[CS]") && s.contains("§c[B]"))) {
 				if (month) {
 					if (s.contains("." + date + "."))
 						srmins.add(s);
@@ -85,8 +86,9 @@ public class ChestShopStatement {
 		if (profit == 0.0) s = "§7[+/-]" + profit;
 		if (profit > 0.0) s = "§2[+]" + profit;
 		if (profit < 0.0) s = "§c[-]" + profit * -1;
+		DecimalFormat dc = new DecimalFormat("#.##");
 		
-		return s;
+		return dc.format(s);
 	}
 	
 }

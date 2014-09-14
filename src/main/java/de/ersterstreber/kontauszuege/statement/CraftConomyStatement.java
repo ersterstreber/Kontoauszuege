@@ -1,5 +1,6 @@
 package de.ersterstreber.kontauszuege.statement;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,8 +86,9 @@ public class CraftConomyStatement {
 		if (profit == 0.0) s = "§7[+/-]" + profit;
 		if (profit > 0.0) s = "§2[+]" + profit;
 		if (profit < 0.0) s = "§c[-]" + profit * -1;
+		DecimalFormat dc = new DecimalFormat("#.##");
 		
-		return s;
+		return dc.format(s);
 	}
 
 }
