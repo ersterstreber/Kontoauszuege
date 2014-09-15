@@ -76,9 +76,11 @@ public class AuszugListener implements Listener {
 	@EventHandler
 	public void onSend(MoneyPayEvent e) {
 		DecimalFormat df = new DecimalFormat("#.##");
-		Kontoauszug.add(e.getOwner(), "§7[" + getDate() + "][IC]§2[+]" + e.getClient()
+		String reason = "/";
+		if (e.getReason() != null) reason = e.getReason();
+		Kontoauszug.add(e.getOwner(), "§7[" + getDate() + "][IC][" + reason + "]§2[+]" + e.getClient()
 				+ ": " + df.format(e.getAmount()) + " SD");
-		Kontoauszug.add(e.getClient(), "§7[" + getDate() + "][IC]§c[-]" + e.getOwner()
+		Kontoauszug.add(e.getClient(), "§7[" + getDate() + "][IC][" + reason + "]§c[-]" + e.getOwner()
 				+ ": " + df.format(e.getAmount()) + " SD");
 	}
 

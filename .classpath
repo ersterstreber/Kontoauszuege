@@ -34,6 +34,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Batuhan/Downloads/ChestShop.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Batuhan/Desktop/Serer/plugins/SimpleRegionMarket.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Batuhan/Desktop/Serer/plugins/craftconomy3-3.1.7-ersterstreber.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Batuhan/Downloads/craftconomy3-master/craftconomy3-master/target/craftconomy3-3.1.7-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
