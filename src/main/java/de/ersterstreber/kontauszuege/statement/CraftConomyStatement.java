@@ -88,7 +88,7 @@ public class CraftConomyStatement {
 		if (profit < 0.0) s = "§c[-]" + profit * -1;
 		DecimalFormat dc = new DecimalFormat("#.##");
 		
-		return dc.format(s);
+		return s + dc.format(profit);
 	}
 
 }

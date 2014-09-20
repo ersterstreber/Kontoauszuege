@@ -34,41 +34,14 @@ public class AuszugListener implements Listener {
 			ioowner = "§c[S]";
 			ioclient = "§2[S]";
 		}
-		double realprice = 0;
-		if (e.getTransactionType() == TransactionType.BUY) {
-			String[] ss = e.getSign().getLine(2).split(":");
-			if (ss.length > 1) {
-				if (ss[0].toUpperCase().contains("B")) {
-					realprice = Double.parseDouble(ss[0].replace(" ", "").split("B")[1]);
-				}
-				if (ss[1].toUpperCase().contains("B")) {
-					realprice = Double.parseDouble(ss[1].replace(" ", "").split("B")[1]);
-				}
-			} else {
-				realprice = Double.parseDouble(ss[0].replace(" ", "").split("B")[1]);
-			}
-		}
-		if (e.getTransactionType() == TransactionType.SELL) {
-			String[] ss = e.getSign().getLine(2).split(":");
-			if (ss.length > 1) {
-				if (ss[0].toUpperCase().contains("S")) {
-					realprice = Double.parseDouble(ss[0].replace(" ", "").split("S")[1]);
-				}
-				if (ss[1].toUpperCase().contains("S")) {
-					realprice = Double.parseDouble(ss[1].replace(" ", "").split("S")[1]);
-				}
-			} else {
-				realprice = Double.parseDouble(ss[0].replace(" ", "").split("S")[1]);
-			}
-		}
-		double d = realprice / e.getPrice();
-		double itemsbought = Double.parseDouble(e.getSign().getLine(1)) / d;
+		double d = e.getSignPrice() / e.getPrice();
+		double bought = Double.parseDouble(e.getSign().getLine(1)) / d;
 		Kontoauszug.add(owner.getName().replace("%gkonto", ""), "§7["
-				+ getDate() + "][CS][IN][" + Math.round(itemsbought) + "]" + ioowner
+				+ getDate() + "][CS][IN][" + Math.round(bought) + "]" + ioowner
 				+ "§9[" + e.getSign().getLine(3) + "] §3"
 				+ e.getClient().getName() + ": §f" + df.format(price) + " SD");
 		Kontoauszug.add(e.getClient().getName().replace("%gkonto", ""), "§7["
-				+ getDate() + "][CS][OUT][" + Math.round(itemsbought) + "]" + ioclient
+				+ getDate() + "][CS][OUT][" + Math.round(bought) + "]" + ioclient
 				+ "§9[" + e.getSign().getLine(3) + "] §3"
 				+ e.getOwner().getName() + ": §f" + df.format(price) + " SD");
 	}
