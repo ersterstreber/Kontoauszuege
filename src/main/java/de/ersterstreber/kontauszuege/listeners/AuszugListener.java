@@ -20,7 +20,7 @@ import de.ersterstreber.kontauszuege.Kontoauszug;
 public class AuszugListener implements Listener {
 
 	@EventHandler
-	public void onUpdate(TransactionEvent e) {
+	public void onUpdate(final TransactionEvent e) {
 		OfflinePlayer owner = e.getOwner();
 		double price = e.getPrice();
 		DecimalFormat df = new DecimalFormat("#.##");
@@ -36,37 +36,48 @@ public class AuszugListener implements Listener {
 		}
 		double d = e.getSignPrice() / e.getPrice();
 		double bought = Double.parseDouble(e.getSign().getLine(1)) / d;
-		Kontoauszug.add(owner.getName().replace("%gkonto", ""), "§7["
+		Kontoauszug.prepareAdding(owner.getName().replace("%gkonto", ""), "§7["
 				+ getDate() + "][CS][IN][" + Math.round(bought) + "]" + ioowner
 				+ "§9[" + e.getSign().getLine(3) + "] §3"
 				+ e.getClient().getName() + ": §f" + df.format(price) + " SD");
-		Kontoauszug.add(e.getClient().getName().replace("%gkonto", ""), "§7["
-				+ getDate() + "][CS][OUT][" + Math.round(bought) + "]" + ioclient
-				+ "§9[" + e.getSign().getLine(3) + "] §3"
-				+ e.getOwner().getName() + ": §f" + df.format(price) + " SD");
+		Kontoauszug.prepareAdding(e.getClient().getName()
+				.replace("%gkonto", ""), "§7[" + getDate() + "][CS][OUT]["
+				+ Math.round(bought) + "]" + ioclient + "§9["
+				+ e.getSign().getLine(3) + "] §3" + e.getOwner().getName()
+				+ ": §f" + df.format(price) + " SD");
+
 	}
 
 	@EventHandler
 	public void onSend(MoneyPayEvent e) {
 		DecimalFormat df = new DecimalFormat("#.##");
 		String reason = "/";
-		if (e.getReason() != null) reason = e.getReason();
-		Kontoauszug.add(e.getOwner(), "§7[" + getDate() + "][IC][" + reason + "]§2[+]" + e.getClient()
-				+ ": " + df.format(e.getAmount()) + " SD");
-		Kontoauszug.add(e.getClient(), "§7[" + getDate() + "][IC][" + reason + "]§c[-]" + e.getOwner()
-				+ ": " + df.format(e.getAmount()) + " SD");
+		if (e.getReason() != null)
+			reason = e.getReason();
+		Kontoauszug.prepareAdding(
+				e.getOwner(),
+				"§7[" + getDate() + "][IC][" + reason + "]§2[+]"
+						+ e.getClient() + ": " + df.format(e.getAmount())
+						+ " SD");
+		Kontoauszug.prepareAdding(e.getClient(),
+				"§7[" + getDate() + "][IC][" + reason + "]§c[-]" + e.getOwner()
+						+ ": " + df.format(e.getAmount()) + " SD");
 	}
 
 	@EventHandler
 	public void onRegionBuy(RegionBuyEvent e) {
 		String owner = e.getOwner();
 		DecimalFormat df = new DecimalFormat("#.##");
-		Kontoauszug.add(owner.replace("%gkonto", ""), "§7[" + getDate()
-				+ "][GS]§2[+]§9[" + e.getRegion() + "]§3" + e.getBuyer() + ": §f"
-				+ df.format(e.getAmount()) + " SD");
-		Kontoauszug.add(e.getBuyer().replace("%gkonto", ""), "§7[" + getDate()
-				+ "][GS]§c[-]§9[" + e.getRegion() + "]§3" + e.getOwner() + ": §f"
-				+ df.format(e.getAmount()) + " SD");
+		Kontoauszug.prepareAdding(
+				owner.replace("%gkonto", ""),
+				"§7[" + getDate() + "][GS]§2[+]§9[" + e.getRegion() + "]§3"
+						+ e.getBuyer() + ": §f" + df.format(e.getAmount())
+						+ " SD");
+		Kontoauszug.prepareAdding(
+				e.getBuyer().replace("%gkonto", ""),
+				"§7[" + getDate() + "][GS]§c[-]§9[" + e.getRegion() + "]§3"
+						+ e.getOwner() + ": §f" + df.format(e.getAmount())
+						+ " SD");
 	}
 
 	public String getDate() {

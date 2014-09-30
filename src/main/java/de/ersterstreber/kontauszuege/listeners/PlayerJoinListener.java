@@ -17,6 +17,9 @@ public class PlayerJoinListener implements Listener {
 			Kontoauszug.pconfig.options().copyDefaults(true);
 			Kontoauszug.savePConfig();
 		}
+		if (!Kontoauszug.toAdd.containsKey(e.getPlayer().getName())) {
+			Kontoauszug.toAdd.put(e.getPlayer().getName(), new ArrayList<String>());
+		}
 //		Kontoauszug.addEntry(e.getPlayer().getName());
 //		Kontoauszug.addGKonto(e.getPlayer());
 	}

@@ -72,7 +72,7 @@ public class ChestShopStatement {
 			try {
 				price = Double.parseDouble(q[0].replace("§f", ""));
 			} catch (NumberFormatException ex) {
-				System.err.println(q[0].replace("§d", "") + " could not be cast to a double!");
+				System.err.println(q[0].replace("§f", "") + " could not be cast to a double!");
 				return price;
 			}
 			iprice += price;

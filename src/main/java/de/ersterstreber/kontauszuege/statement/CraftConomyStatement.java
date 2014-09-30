@@ -70,9 +70,9 @@ public class CraftConomyStatement {
 			String[] ss = splitted[1].split(" ");
 			double price = 0;
 			try {
-				price = Double.parseDouble(ss[0]);
+				price = Double.parseDouble(ss[0].replace("§f", ""));
 			} catch (NumberFormatException ex) {
-				System.err.println(splitted[1] + " could not be cast to a double!");
+				System.err.println(splitted[1].replace("§f", "") + " could not be cast to a double!");
 				return price;
 			}
 			iprice += price;

@@ -32,8 +32,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Batuhan/Desktop/Serer/plugins/SimpleRegionMarket.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Batuhan/Downloads/ChestShop-3-master/ChestShop-3-master/target/ChestShop.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Batuhan/Downloads/craftconomy3-master/craftconomy3-master/target/craftconomy3-3.1.7-SNAPSHOT-ersterstreber.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Batuhan/Desktop/a/SimpleRegionMarket.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
