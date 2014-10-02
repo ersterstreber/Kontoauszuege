@@ -71,12 +71,14 @@ public class Kontoauszug extends JavaPlugin {
 	}
 
 	public static void prepareAdding(final String player, final String s) {
-		if (!toAdd.containsKey(player)) {
+		System.out.println(player.toLowerCase());
+		if (!toAdd.containsKey(player.toLowerCase())) {
 			toAdd.put(player.toLowerCase(), new ArrayList<String>());
 		}
-		List<String> list = toAdd.get(player);
+		List<String> list = toAdd.get(player.toLowerCase());
 		list.add(s);
-		toAdd.put(player, list);
+		toAdd.remove(player.toLowerCase());
+		toAdd.put(player.toLowerCase(), list);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -92,24 +94,31 @@ public class Kontoauszug extends JavaPlugin {
 				while (it.hasNext()) {
 					@SuppressWarnings("rawtypes")
 					Map.Entry pairs = (Map.Entry) it.next();
-					List<String> auszuege = pconfig.getStringList("players."
-							+ pairs.getKey());
-					for (String s : toAdd.get(pairs.getKey())) {
+					List<String> auszuege = null;
+					if (pconfig.contains("players." + pairs.getKey().toString().toLowerCase())) {
+						auszuege = pconfig.getStringList("players." + pairs.getKey().toString().toLowerCase());
+					} else {
+						pconfig.addDefault("players." + pairs.getKey().toString().toLowerCase(), new ArrayList<String>());
+						pconfig.options().copyDefaults(true);
+						savePConfig();
+						auszuege = new ArrayList<String>();
+					}
+					for (String s : toAdd.get(pairs.getKey().toString().toLowerCase())) {
 						auszuege.add(s);
 					}
-					pconfig.set("players." + pairs.getKey(), auszuege);
+					pconfig.set("players." + pairs.getKey().toString().toLowerCase(), auszuege);
 					savePConfig();
 					it.remove();
 				}
 				toAdd.clear();
 				for (Player p : Bukkit.getOnlinePlayers()) {
-					toAdd.put(p.getName(), new ArrayList<String>());
+					toAdd.put(p.getName().toLowerCase(), new ArrayList<String>());
 				}
 				Kontoauszug.getInstance().getLogger().info("Finished adding to file.");
 				Kontoauszug.getInstance().getLogger().info("Current TPS: ");
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tps");
 			}
-		}, 0L, 300 * 20L);
+		}, 0L, 500 * 20L);
 		
 	}
 
@@ -120,7 +129,7 @@ public class Kontoauszug extends JavaPlugin {
 
 			public void run() {
 				List<String> auszug = pconfig.getStringList("players."
-						+ sendTo.getName());
+						+ sendTo.getName().toLowerCase());
 				if (!type.equalsIgnoreCase("ALL")) {
 					sendTo.sendMessage("§7------" + type + " - Auszüge------");
 				} else {
