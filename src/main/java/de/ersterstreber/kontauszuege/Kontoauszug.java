@@ -118,7 +118,7 @@ public class Kontoauszug extends JavaPlugin {
 				Kontoauszug.getInstance().getLogger().info("Current TPS: ");
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tps");
 			}
-		}, 0L, 500 * 20L);
+		}, 300 * 20L, 300 * 20L);
 		
 	}
 
