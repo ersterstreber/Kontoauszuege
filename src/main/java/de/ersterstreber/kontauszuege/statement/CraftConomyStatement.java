@@ -11,7 +11,7 @@ public class CraftConomyStatement {
 	private String player;
 
 	public CraftConomyStatement(String player) {
-		this.player = player;
+		this.player = player.toLowerCase();
 	}
 
 	public String getPlayer() {
@@ -83,12 +83,19 @@ public class CraftConomyStatement {
 	public String getProfit(String date, boolean month) {
 		double profit = getEarnings(date, month) - getExpenses(date, month);
 		String s = null;
-		if (profit == 0.0) s = "§7[+/-]" + profit;
-		if (profit > 0.0) s = "§2[+]" + profit;
-		if (profit < 0.0) s = "§c[-]" + profit * -1;
+		DecimalFormat dc = new DecimalFormat("#.##");
+		if (profit == 0.0) s = "§7[+/-]" + dc.format(profit);
+		if (profit > 0.0) s = "§2[+]" + dc.format(profit);
+		if (profit < 0.0) s = "§c[-]" + dc.format(profit * -1);
+		
+		return s + " SD";
+	}
+	
+	public double getProfitAsDouble(String date, boolean month) {
+		double profit = getEarnings(date, month) - getExpenses(date, month);
 		DecimalFormat dc = new DecimalFormat("#.##");
 		
-		return s + dc.format(profit);
+		return Double.parseDouble(dc.format(profit));
 	}
 
 }

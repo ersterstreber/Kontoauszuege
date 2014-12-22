@@ -89,8 +89,7 @@ public class Kontoauszug extends JavaPlugin {
 				Kontoauszug.getInstance().getLogger().warning("Started adding to file.");
 				Kontoauszug.getInstance().getLogger().info("Current TPS: ");
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tps");
-				Iterator<Entry<String, List<String>>> it = toAdd.entrySet()
-						.iterator();
+				Iterator<Entry<String, List<String>>> it = toAdd.entrySet().iterator();
 				while (it.hasNext()) {
 					@SuppressWarnings("rawtypes")
 					Map.Entry pairs = (Map.Entry) it.next();

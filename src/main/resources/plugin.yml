@@ -1,6 +1,6 @@
 name: Kontoauszuege
 main: de.ersterstreber.kontauszuege.Kontoauszug
-version: 1.6
+version: 1.8
 author: ersterstreber
 softdepends: [CraftConomy, SimpleRegionMarket, ChestShop]
 commands:
