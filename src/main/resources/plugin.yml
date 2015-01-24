@@ -1,15 +1,8 @@
 name: Kontoauszuege
-main: de.ersterstreber.kontauszuege.Kontoauszug
-version: 1.8
+main: de.ersterstreber.kontoauszuege.Main
 author: ersterstreber
-softdepends: [CraftConomy, SimpleRegionMarket, ChestShop]
+version: 2.0
 commands:
      konto:
-          description: Zeigt deine Kontoauszuege an.
+          description: Zeigt dir deine Kontoauszuege an.
           aliases: [k]
-     gkonto:
-          description: Der GKonto-Hauptkommand.
-          aliases: [gk]
-     statement:
-          description: Zeigt eine Zusammenfassung der Einnahmen und Ausgaben.
-          aliases: [s]
